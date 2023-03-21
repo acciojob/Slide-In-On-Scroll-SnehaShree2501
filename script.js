@@ -1,55 +1,21 @@
-// Your JS code here.
-// Your JS code here.
-var parentElement = document.getElementById('parent');
-var divElement = document.getElementById("div1");
+// This file is not to be modified. Please ignore this.
+// We will understand all of this later in the course.
+// DO NOT MODIFY THIS FILE
 
-var spanElement = document.createElement('span');
-spanElement.textContent = 'I am span after p and before div';
+const express = require('express');
+const path = require('path');
 
-// we need to add 
+const app = express();
 
-parentElement.insertBefore(spanElement, divElement);
+app.use(express.static(__dirname))
 
-function minCostToFormRope(event) {
-	alert("test");
-	event.preventDefault();
-	var inputElement = document.querySelector('input').value;
-	var arr = inputElement.split(',');
-	arr.sort(function (a,b) { return a-b});
-
-	// we need to access first two element 
-	// add them & store in a variable res
-
-	// add the res in array 
-	// increment cost by res
-    var cost = 0;
-	while(arr.length > 1) {
-		var res = Number(arr[0]) + Number(arr[1]);
-		arr.push(res);
-		cost += res;
-        arr.shift();
-		arr.shift();
-
-		arr.sort(function (a,b) { return a-b});
-	}
-
-	document.getElementById("result").textContent = cost;
-}
-
-document.addEventListener
-
-
-var todoValue = document.getElementById("newTodoInput").value;
-var btn = document.getElementById("addTodoBtn");
-var ol = document.getElementById("todoList");
-
-function addTodo() {
-  if (todoValue) {
-    // we need to create a li
-    var li = document.createElement("li");
-    li.textContent = todoValue;
-    ol.appendChild(li);
-  }
-}
-
-btn.addEventListener("click", addTodo);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/main.html'));
+});
+//your code here
+app.post('/add', (req, res) => {
+  const {a,b} = req.body;
+  res.status(200).send(a+b);
+  // res.sendFile(path.join(__dirname + '/main.html'));
+});
+module.exports = app;
